@@ -57,8 +57,13 @@ def get_list_post(request):
         data = []
         cur.execute(query, (databody['startDate'], databody['endDate']))
 
+        # map variable cur save data to database
+        for row in cur:
+            data.append(row)
+
         # clean data sent google sheets
         for row in data:
+            print(data)
             arrTemp = []
             for obj in row:
                 if obj == 'create_time':
