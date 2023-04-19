@@ -78,11 +78,11 @@ WSGI_APPLICATION = 'src.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'sky007v2',
+        'NAME': 'sky007_test',
         'USER': 'root',
-        'PASSWORD': 'dorcmdnjs123#AB#',
-        'HOST': '61.100.180.32',
-        'PORT': '',
+        'PASSWORD': '',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 

@@ -55,11 +55,12 @@
 
         document.getElementById('submit-button').addEventListener('click',() => {
             if(!isSubmit)
-                handleSyncData('2023-04-19', '2023-04-30');
-            // if(startDate.value && endDate.value)
-            //     handleSyncData(startDate.value, endDate.value);
-            // else
-            //     alert('Please choose input date');
+            {
+                if(startDate.value && endDate.value)
+                    handleSyncData(startDate.value, endDate.value);
+                else
+                    alert('Please choose input date');
+            }
         })
 
 
