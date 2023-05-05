@@ -23,5 +23,7 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
 
-    path('api/post/', views.get_list_post)
+    path('api/post/', views.get_list_post),
+    path('api/sysn-data-google-sheets/', views.sync_report_data_to_googlesheet),
+    path('api/list-product', views.get_list_post)
 ]

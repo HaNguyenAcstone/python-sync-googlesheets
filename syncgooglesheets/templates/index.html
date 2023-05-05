@@ -1,69 +1,148 @@
 <!DOCTYPE html>
 <html>
-    <style>
-    input[type=date], select {
-        width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
+    <head>
+        <title>Sync Data To Google Sheets</title>
+        <!-- <link rel="stylesheet" href="../static/main.css" /> -->
+        <link rel="stylesheet" type="text/css" href="../static/bootstrap-duallistbox.css">
 
-    input[type=button] {
-        width: 100%;
-        background-color: #4CAF50;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        
 
-    input[type=submit]:hover {
-        background-color: #45a049;
-    }
-
-    div {
-        border-radius: 5px;
-        background-color: #f2f2f2;
-        padding: 20px;
-    }
-    </style>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="../static/jquery.bootstrap-duallistbox.js"></script>
+    </head>
     <body>
+            <header class="navbar navbar-expand-lg navbar-light bg-light">
+                <h3 class="text-center w-100 text-uppercase">Sync Data To Google Sheets</h3>
+            </header>
+            <div class="container mt-4">
+                <div>
+                    <form>
+                        <div class="row">
+                            <div class="col form-group">
+                                <label class="font-weight-bold" for="start-date">Start Date: </label>
+                                <input type="datetime-local" class="form-control" id="start-date" placeholder="Select Start Date">
+                            </div>
 
-        <h3>Sync Data To Google Sheets</h3>
+                            <div class="col form-group">
+                                <label class="font-weight-bold" for="end-date">End Date: </label>
+                                <input type="datetime-local" class="form-control" id="end-date" placeholder="Select End Date">
+                            </div>
 
-        <div>
-            <form>
-                <label for="fname">Start Date</label>
-                <input type="date" id="start-date" name="start-date">
-
-                <label for="lname">End Date</label>
-                <input type="date" id="end-date" name="end-date">
-
-                <input id="submit-button" type="button" value="Sync Data Google Sheets">
-            </form>
-        </div>
+                            <div class="col form-group">
+                                <label class="font-weight-bold" for="start-date">Brand: </label>
+                                <select id="select-brand" class="custom-select mr-sm-2">
+                                    <option value="null">All</option>
+                                    <option value="BA">Bbia</option>
+                                    <option value="EG">Eglips</option>
+                                    <option value="MS">Mixsoon</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col form-group">
+                                <label class="font-weight-bold" for="start-date">Platform: </label>
+                                <select id="select-platform" class="custom-select mr-sm-2">
+                                    <option value="10, 20, 36, 58, 0, 46, 48">All</option>
+                                    <option value="10">Shopee</option>
+                                    <option value="20">Lazada</option>
+                                    <option value="36">Tiki</option>
+                                    <option value="58">Tik Tok</option>
+                                    <option value="0, 46, 48">Website</option>
+                                </select>
+                            </div>
+                            <div class="col"></div>
+                            <div class="col d-flex justify-content-end align-items-end">
+                                <input id="submit-button" class="btn btn-primary" type="button" value="Sync Data Filter">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col form-group d-flex flex-column">
+                                <label class="font-weight-bold" for="start-date">Product List: </label>
+                                <select 
+                                    multiple="multiple" size="10" class="location_report"
+                                    id="product-list"
+                                >
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
     </body>
     <script>
         var startDate = document.getElementById('start-date')
         var endDate = document.getElementById('end-date')
-        var isSubmit = false
+        var brand = document.getElementById('select-brand')
+        var platform = document.getElementById('select-platform')
+
+        var isSubmit = false 
+
+        window.addEventListener('load', () => {
+            handleMapDataToProductList(brand.value)
+
+            $('.location_report').bootstrapDualListbox({
+                nonSelectedListLabel: 'Non-selected',
+                selectedListLabel: 'Selected',
+                preserveSelectionOnMove: 'moved',
+                moveOnSelect: false
+            });
+        })
+
+        // handle change input select brand
+        brand.addEventListener('change', () => {
+            handleMapDataToProductList(brand.value)
+        })
 
         document.getElementById('submit-button').addEventListener('click',() => {
             if(!isSubmit)
             {
-                if(startDate.value && endDate.value)
-                    handleSyncData(startDate.value, endDate.value);
-                else
-                    alert('Please choose input date');
+                let arrValueSelect = $("#product-list").val().filter(d => d != '');
+
+                if(arrValueSelect.length <= 0) {
+                    return alert('Please choose product.')
+                }
+
+                if(!startDate.value || !endDate.value) {
+                    return alert('Please choose input date');
+                }
+
+                handleSyncDataV2(startDate.value, endDate.value, arrValueSelect, platform.value.split(','))
             }
         })
 
+        // handle call api map data to product list
+        function handleMapDataToProductList(brand) {
+            fetch(`http://127.0.0.1:8000/api/list-product?brand=${brand}`, {
+                method: "GET",
+            })
+            .then((res) => {
+                return res.json();
+            })
+            .then(res => {
+                $("#product-list").empty();
 
+                res.data.map(d => {
+                    $("#product-list").append('<option value='+d.product_id+'>'+d.product_name+'<option>');
+                })
+
+                $("#product-list").bootstrapDualListbox('refresh', true);
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        }
+
+
+        // handle post sync data to google sheets
         function handleSyncData(startDate, endDate) {
             document.getElementById('submit-button').value="wating..."
             isSubmit = true;
@@ -72,6 +151,34 @@
                 body: JSON.stringify({
                     startDate,
                     endDate,
+                })
+            })
+            .then((res) => {
+                return res.json();
+            })
+            .then(res => {
+                alert(res.message);
+                document.getElementById('submit-button').value="Sync Data Google Sheets"
+                isSubmit = false;
+            })
+            .catch(err => {
+                console.log(err)
+                document.getElementById('submit-button').value="Sync Data Google Sheets"
+                isSubmit = false;
+            })
+        }
+
+         // handle post sync data v2 to google sheets
+         function handleSyncDataV2(startDate, endDate, productList, platform) {
+            document.getElementById('submit-button').value="wating..."
+            isSubmit = true;
+            fetch(`http://127.0.0.1:8000/api/sysn-data-google-sheets/`, {
+                method: "POST",
+                body: JSON.stringify({
+                    startDate,
+                    endDate,
+                    productList,
+                    platform,
                 })
             })
             .then((res) => {
